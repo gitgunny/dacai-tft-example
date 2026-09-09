@@ -8,6 +8,13 @@ Copyright (c) 2026 https://github.com/gitgunny
 
 local screen_screen_1 = {}
 
+-- 열거형 정의
+local ANIMATION_RIGHT_TO_LEFT = 1
+local ANIMATION_LEFT_TO_RIGHT = 2
+local ANIMATION_TOP_TO_BOTTOM = 3
+local ANIMATION_BOTTOM_TO_TOP = 4
+local ANIMATION_GRADATION = 5
+
 -- 컨트롤 ID 정의
 local exit_button_id = 1
 local previous_screen_button_id = 2
@@ -46,19 +53,19 @@ function screen_screen_1.on_control_notify(screen, control, value)
         refresh_screen()
     elseif control == right_to_left_animation_change_screen_button_id then
         -- 오른쪽에서 왼쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
-        change_screen_effect(screen_2_screen_id, 1)
+        change_screen_effect(screen_2_screen_id, ANIMATION_RIGHT_TO_LEFT)
     elseif control == left_to_right_animation_change_screen_button_id then
         -- 왼쪽에서 오른쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
-        change_screen_effect(screen_2_screen_id, 2)
+        change_screen_effect(screen_2_screen_id, ANIMATION_LEFT_TO_RIGHT)
     elseif control == top_to_bottom_animation_change_screen_button_id then
         -- 위쪽에서 아래쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
-        change_screen_effect(screen_2_screen_id, 3)
+        change_screen_effect(screen_2_screen_id, ANIMATION_TOP_TO_BOTTOM)
     elseif control == bottom_to_top_animation_change_screen_button_id then
         -- 아래쪽에서 위쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
-        change_screen_effect(screen_2_screen_id, 4)
+        change_screen_effect(screen_2_screen_id, ANIMATION_BOTTOM_TO_TOP)
     elseif control == gradation_animation_change_screen_button_id then
         -- 그라데이션 애니메이션 전환 버튼 터치 시 애니메이션 전환
-        change_screen_effect(screen_2_screen_id, 5)
+        change_screen_effect(screen_2_screen_id, ANIMATION_GRADATION)
     elseif control == change_child_screen_button_id then
         -- 보조 스크린 전환 버튼 터치 시 보조 스크린 전환
         change_child_screen(screen_child_screen_id)
