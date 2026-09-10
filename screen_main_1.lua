@@ -12,6 +12,7 @@ local screen_main_1 = {}
 local screen_button_id = 1
 local control_button_id = 2
 local button_button_id = 3
+local text_button_id = 4
 local previous_screen_button_id = 21
 local next_screen_button_id = 22
 
@@ -30,6 +31,9 @@ function screen_main_1.on_control_notify(screen, control, value)
     elseif control == button_button_id then
         -- 버튼 버튼 터치 시 버튼 예제 스크린으로 전환
         change_screen(button_screen_id)
+    elseif control == text_button_id then
+        -- 텍스트 버튼 터치 시 텍스트 예제 스크린으로 전환
+        change_screen(text_screen_id)
     elseif control == previous_screen_button_id then
         -- 이전 스크린 버튼 터치 시 무시
         return
