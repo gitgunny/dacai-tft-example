@@ -13,6 +13,11 @@ package.path = package.path .. ";C:\\Users\\Gunny\\Projects\\Git\\dacai-tft-exam
 -- 패키지 초기화
 dacai_tft_example = require("dacai_tft_example")
 
+--- 초기화 함수
+function on_init()
+    dacai_tft_example.on_init()
+end
+
 --- 컨트롤 이벤트 콜백 함수
 --- @param screen  number 호출 스크린 ID
 --- @param control number 호출 컨트롤 ID

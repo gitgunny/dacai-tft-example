@@ -9,7 +9,7 @@ Copyright (c) 2026 https://github.com/gitgunny
 local screen_child = {}
 
 -- 컨트롤 ID 정의
-local confirm_button_id = 2
+local confirm_button_id = 1
 
 --- 컨트롤 이벤트 콜백 함수
 --- dacai_tft_example.lua 파일에서 control_notify 콜백 함수 등록 필수

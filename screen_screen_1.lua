@@ -13,21 +13,25 @@ local ANIMATION_RIGHT_TO_LEFT = 1
 local ANIMATION_LEFT_TO_RIGHT = 2
 local ANIMATION_TOP_TO_BOTTOM = 3
 local ANIMATION_BOTTOM_TO_TOP = 4
-local ANIMATION_GRADATION = 5
+local ANIMATION_GRADUALLY_FADE = 5
+local ANIMATION_GRADUALLY_OPEN = 6
+local ANIMATION_GRADUALLY_CLOSE = 7
 
 -- 컨트롤 ID 정의
 local exit_button_id = 1
 local previous_screen_button_id = 2
 local next_screen_button_id = 3
-local get_current_screen_button_id = 4
-local refresh_screen_button_id = 5
-local right_to_left_animation_change_screen_button_id = 6
-local left_to_right_animation_change_screen_button_id = 7
-local top_to_bottom_animation_change_screen_button_id = 8
-local bottom_to_top_animation_change_screen_button_id = 9
-local gradation_animation_change_screen_button_id = 10
-local change_child_screen_button_id = 11
-local current_screen_text_id = 102
+local current_screen_text_id = 4
+local get_current_screen_button_id = 5
+local refresh_screen_button_id = 6
+local change_child_screen_button_id = 7
+local right_to_left_animation_change_screen_button_id = 8
+local left_to_right_animation_change_screen_button_id = 9
+local top_to_bottom_animation_change_screen_button_id = 10
+local bottom_to_top_animation_change_screen_button_id = 11
+local gradually_fade_animation_change_screen_button_id = 12
+local gradually_open_animation_change_screen_button_id = 13
+local gradually_close_animation_change_screen_button_id = 14
 
 --- 컨트롤 이벤트 콜백 함수
 --- dacai_tft_example.lua 파일에서 on_control_notify 콜백 함수 등록 필수
@@ -51,6 +55,9 @@ function screen_screen_1.on_control_notify(screen, control, value)
     elseif control == refresh_screen_button_id then
         -- 스크린 갱신 버튼 터치 시 스크린 갱신
         refresh_screen()
+    elseif control == change_child_screen_button_id then
+        -- 보조 스크린 전환 버튼 터치 시 보조 스크린 전환
+        change_child_screen(screen_child_screen_id)
     elseif control == right_to_left_animation_change_screen_button_id then
         -- 오른쪽에서 왼쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
         change_screen_effect(screen_2_screen_id, ANIMATION_RIGHT_TO_LEFT)
@@ -63,12 +70,15 @@ function screen_screen_1.on_control_notify(screen, control, value)
     elseif control == bottom_to_top_animation_change_screen_button_id then
         -- 아래쪽에서 위쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
         change_screen_effect(screen_2_screen_id, ANIMATION_BOTTOM_TO_TOP)
-    elseif control == gradation_animation_change_screen_button_id then
-        -- 그라데이션 애니메이션 전환 버튼 터치 시 애니메이션 전환
-        change_screen_effect(screen_2_screen_id, ANIMATION_GRADATION)
-    elseif control == change_child_screen_button_id then
-        -- 보조 스크린 전환 버튼 터치 시 보조 스크린 전환
-        change_child_screen(screen_child_screen_id)
+    elseif control == gradually_fade_animation_change_screen_button_id then
+        -- 페이드 효과 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_2_screen_id, ANIMATION_GRADUALLY_FADE)
+    elseif control == gradually_open_animation_change_screen_button_id then
+        -- 안쪽에서 바깥쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_2_screen_id, ANIMATION_GRADUALLY_OPEN)
+    elseif control == gradually_close_animation_change_screen_button_id then
+        -- 바깥쪽에서 안쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_2_screen_id, ANIMATION_GRADUALLY_CLOSE)
     end
 end
 

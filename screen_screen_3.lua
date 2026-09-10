@@ -16,9 +16,9 @@ local STATE_ENABLE = 1
 local exit_button_id = 1
 local previous_screen_button_id = 2
 local next_screen_button_id = 3
-local notify_change_screen_enable_button_id = 4
-local notify_change_screen_disable_button_id = 5
-local notify_change_screen_count_text_id = 102
+local notify_change_screen_count_text_id = 4
+local notify_change_screen_enable_button_id = 5
+local notify_change_screen_disable_button_id = 6
 
 -- 스크린 전환 콜백 함수 관련 변수
 notify_change_screen_state = STATE_DISABLE
