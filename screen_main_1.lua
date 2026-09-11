@@ -27,13 +27,13 @@ function screen_main_1.on_control_notify(screen, control, value)
         change_screen(screen_1_screen_id)
     elseif control == control_button_id then
         -- 컨트롤 버튼 터치 시 컨트롤 예제 스크린으로 전환
-        change_screen(control_screen_id)
+        change_screen(control_1_screen_id)
     elseif control == button_button_id then
         -- 버튼 버튼 터치 시 버튼 예제 스크린으로 전환
-        change_screen(button_screen_id)
+        change_screen(button_1_screen_id)
     elseif control == text_button_id then
         -- 텍스트 버튼 터치 시 텍스트 예제 스크린으로 전환
-        change_screen(text_screen_id)
+        change_screen(text_1_screen_id)
     elseif control == previous_screen_button_id then
         -- 이전 스크린 버튼 터치 시 무시
         return

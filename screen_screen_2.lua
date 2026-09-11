@@ -9,34 +9,19 @@ Copyright (c) 2026 https://github.com/gitgunny
 local screen_screen_2 = {}
 
 -- 열거형 정의
-local STATE_DISABLE = 0
-local STATE_ENABLE = 1
-local STATE_ENABLE_HORIZONTAL = 1
-local STATE_ENABLE_VERTICAL = 2
+local ANIMATION_RIGHT_TO_LEFT = 1
+local ANIMATION_TOP_TO_BOTTOM = 3
+local ANIMATION_GRADUALLY_FADE = 5
+local ANIMATION_GRADUALLY_OPEN = 6
 
 -- 컨트롤 ID 정의
 local exit_button_id = 1
 local previous_screen_button_id = 2
 local next_screen_button_id = 3
-local horizontal_slide_mode_enable_button_id = 4
-local vertical_slide_mode_enable_button_id = 5
-local slide_mode_disable_button_id = 6
-local slide_round_enable_button_id = 7
-local slide_round_disable_button_id = 8
-local splite_screen_id = 9
-local splite_screen_slide_mode_enable_button_id = 10
-local splite_screen_slide_mode_disable_button_id = 11
-local splite_screen_slide_round_enable_button_id = 12
-local splite_screen_slide_round_disable_button_id = 13
-
--- 스크린 슬라이드 관련 변수
-local slide_mode_state = STATE_DISABLE
-local slide_round_state = STATE_DISABLE
-
--- 분할 스크린 슬라이드 관련 변수
-local splite_screen_slide_start_screen = screen_splite_1_screen_id
-local splite_screen_slide_end_screen = screen_splite_1_screen_id
-local splite_screen_slide_round_state = STATE_DISABLE
+local right_to_left_animation_change_screen_button_id = 4
+local top_to_bottom_animation_change_screen_button_id = 5
+local gradually_open_animation_change_screen_button_id = 6
+local gradually_fade_animation_change_screen_button_id = 7
 
 --- 컨트롤 이벤트 콜백 함수
 --- dacai_tft_example.lua 파일에서 on_control_notify 콜백 함수 등록 필수
@@ -53,46 +38,18 @@ function screen_screen_2.on_control_notify(screen, control, value)
     elseif control == next_screen_button_id then
         -- 다음 스크린 전환 버튼 터치 시 3번 스크린으로 전환
         change_screen(screen_3_screen_id)
-    elseif control == slide_mode_disable_button_id then
-        -- 슬라이드 모드 비활성화 버튼 터치 시 슬라이드 모드 비활성화
-        slide_mode_state = STATE_DISABLE
-        set_slide_screen(slide_mode_state, slide_round_state, screen_1_screen_id, screen_3_screen_id)
-    elseif control == horizontal_slide_mode_enable_button_id then
-        -- 수평 슬라이드 설정 버튼 터치 시 수평 슬라이드 설정
-        slide_mode_state = STATE_ENABLE_HORIZONTAL
-        set_slide_screen(slide_mode_state, slide_round_state, screen_1_screen_id, screen_3_screen_id)
-    elseif control == vertical_slide_mode_enable_button_id then
-        -- 수직 슬라이드 설정 버튼 터치 시 수직 슬라이드 설정
-        slide_mode_state = STATE_ENABLE_VERTICAL
-        set_slide_screen(slide_mode_state, slide_round_state, screen_1_screen_id, screen_3_screen_id)
-    elseif control == slide_round_enable_button_id then
-        -- 슬라이드 순환 활성화 버튼 터치 시 슬라이드 순환 활성화
-        slide_round_state = STATE_ENABLE
-        set_slide_screen(slide_mode_state, slide_round_state, screen_1_screen_id, screen_3_screen_id)
-    elseif control == slide_round_disable_button_id then
-        -- 슬라이드 순환 비활성화 버튼 터치 시 슬라이드 순환 비활성화
-        slide_round_state = STATE_DISABLE
-        set_slide_screen(slide_mode_state, slide_round_state, screen_1_screen_id, screen_3_screen_id)
-    elseif control == splite_screen_slide_mode_enable_button_id then
-        -- 분할 스크린 슬라이드 모드 활성화 버튼 터치 시 분할 스크린 슬라이드 모드 활성화
-        splite_screen_slide_start_screen = screen_splite_1_screen_id
-        splite_screen_slide_end_screen = screen_splite_3_screen_id
-        splite_screen_slide_round_state = STATE_DISABLE
-        set_screen_range(screen_2_screen_id, splite_screen_id, splite_screen_slide_start_screen, splite_screen_slide_end_screen, splite_screen_slide_round_state)
-    elseif control == splite_screen_slide_mode_disable_button_id then
-        -- 분할 스크린 슬라이드 모드 비활성화 버튼 터치 시 분할 스크린 슬라이드 모드 비활성화
-        splite_screen_slide_start_screen = screen_splite_1_screen_id
-        splite_screen_slide_end_screen = screen_splite_1_screen_id
-        splite_screen_slide_round_state = STATE_DISABLE
-        set_screen_range(screen_2_screen_id, splite_screen_id, splite_screen_slide_start_screen, splite_screen_slide_end_screen, splite_screen_slide_round_state)
-    elseif control == splite_screen_slide_round_enable_button_id then
-        -- 분할 스크린 슬라이드 순환 활성화 버튼 터치 시 분할 스크린 슬라이드 순환 활성화
-        splite_screen_slide_round_state = STATE_ENABLE
-        set_screen_range(screen_2_screen_id, splite_screen_id, splite_screen_slide_start_screen, splite_screen_slide_end_screen, splite_screen_slide_round_state)
-    elseif control == splite_screen_slide_round_disable_button_id then
-        -- 분할 스크린 슬라이드 순환 비활성화 버튼 터치 시 분할 스크린 슬라이드 순환 비활성화
-        splite_screen_slide_round_state = STATE_DISABLE
-        set_screen_range(screen_2_screen_id, splite_screen_id, splite_screen_slide_start_screen, splite_screen_slide_end_screen, splite_screen_slide_round_state)
+    elseif control == right_to_left_animation_change_screen_button_id then
+        -- 오른쪽에서 왼쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_3_screen_id, ANIMATION_RIGHT_TO_LEFT)
+    elseif control == top_to_bottom_animation_change_screen_button_id then
+        -- 위쪽에서 아래쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_3_screen_id, ANIMATION_TOP_TO_BOTTOM)
+    elseif control == gradually_open_animation_change_screen_button_id then
+        -- 안쪽에서 바깥쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_3_screen_id, ANIMATION_GRADUALLY_OPEN)
+    elseif control == gradually_fade_animation_change_screen_button_id then
+        -- 페이드 효과 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_3_screen_id, ANIMATION_GRADUALLY_FADE)
     end
 end
 

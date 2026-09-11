@@ -9,20 +9,19 @@ Copyright (c) 2026 https://github.com/gitgunny
 local screen_screen_3 = {}
 
 -- 열거형 정의
-local STATE_DISABLE = 0
-local STATE_ENABLE = 1
+local ANIMATION_LEFT_TO_RIGHT = 2
+local ANIMATION_BOTTOM_TO_TOP = 4
+local ANIMATION_GRADUALLY_FADE = 5
+local ANIMATION_GRADUALLY_CLOSE = 7
 
 -- 컨트롤 ID 정의
 local exit_button_id = 1
 local previous_screen_button_id = 2
 local next_screen_button_id = 3
-local notify_change_screen_count_text_id = 4
-local notify_change_screen_enable_button_id = 5
-local notify_change_screen_disable_button_id = 6
-
--- 스크린 전환 콜백 함수 관련 변수
-notify_change_screen_state = STATE_DISABLE
-notify_change_screen_count = 0
+local left_to_right_animation_change_screen_button_id = 4
+local bottom_to_top_animation_change_screen_button_id = 5
+local gradually_close_animation_change_screen_button_id = 6
+local gradually_fade_animation_change_screen_button_id = 7
 
 --- 컨트롤 이벤트 콜백 함수
 --- dacai_tft_example.lua 파일에서 on_control_notify 콜백 함수 등록 필수
@@ -37,26 +36,20 @@ function screen_screen_3.on_control_notify(screen, control, value)
         -- 이전 스크린 전환 버튼 터치 시 2번 스크린으로 전환
         change_screen(screen_2_screen_id)
     elseif control == next_screen_button_id then
-        -- 다음 스크린 전환 버튼 터치 시 무시
-        return
-    elseif control == notify_change_screen_enable_button_id then
-        -- 스크린 전환 알림 활성화 버튼 터치 시 스크린 전환 알림 활성화
-        notify_change_screen_state = STATE_ENABLE
-    elseif control == notify_change_screen_disable_button_id then
-        -- 스크린 전환 알림 비활성화 터치 시 스크린 전환 알림 비활성화
-        notify_change_screen_state = STATE_DISABLE
-        notify_change_screen_count = 0
-        set_text(screen_3_screen_id, notify_change_screen_count_text_id, "알림 활성화 후 스크린 전환 횟수: 0번")
-    end
-end
-
---- 스크린 전환 이벤트 콜백 함수
---- dacai_tft_example.lua 파일에서 on_screen_change 콜백 함수 등록 필수
---- @param screen number 호출 스크린 ID
-function screen_screen_3.on_screen_change(screen)
-    if notify_change_screen_state == STATE_ENABLE then
-        notify_change_screen_count = notify_change_screen_count + 1
-        set_text(screen_3_screen_id, notify_change_screen_count_text_id, "알림 활성화 후 스크린 전환 횟수: " .. notify_change_screen_count .. "번")
+        -- 다음 스크린 전환 버튼 터치 시 4번 스크린으로 전환
+        change_screen(screen_4_screen_id)
+    elseif control == left_to_right_animation_change_screen_button_id then
+        -- 왼쪽에서 오른쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_2_screen_id, ANIMATION_LEFT_TO_RIGHT)
+    elseif control == bottom_to_top_animation_change_screen_button_id then
+        -- 아래쪽에서 위쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_2_screen_id, ANIMATION_BOTTOM_TO_TOP)
+    elseif control == gradually_close_animation_change_screen_button_id then
+        -- 바깥쪽에서 안쪽으로 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_2_screen_id, ANIMATION_GRADUALLY_CLOSE)
+    elseif control == gradually_fade_animation_change_screen_button_id then
+        -- 페이드 효과 애니메이션 전환 버튼 터치 시 애니메이션 전환
+        change_screen_effect(screen_2_screen_id, ANIMATION_GRADUALLY_FADE)
     end
 end
 
