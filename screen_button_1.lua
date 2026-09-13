@@ -15,14 +15,14 @@ local TOUCH_LONG_PRESS = 2
 
 -- 컨트롤 ID 정의
 local exit_button_id = 1
-local previous_screen_button_id = 2
-local next_screen_button_id = 3
-local set_button_id = 6
-local set_return_button_id = 7
-local reset_button_id = 8
-local reset_return_button_id = 9
-local long_press_count_text_id = 10
-local long_press_button_id = 11
+local change_previous_screen_button_id = 2
+local change_next_screen_button_id = 3
+local set_button_button_id = 6
+local return_set_button_button_id = 7
+local reset_button_button_id = 8
+local return_reset_button_button_id = 9
+local long_press_button_count_text_id = 10
+local long_press_button_button_id = 11
 
 -- 길게 누름 버튼 관련 변수
 local long_press_count = 0
@@ -36,22 +36,22 @@ function screen_button_1.on_control_notify(screen, control, value)
     if control == exit_button_id and value == TOUCH_RELEASE then
         -- 나가기 버튼 터치 시 나가기
         change_screen(main_1_screen_id)
-    elseif control == previous_screen_button_id and value == TOUCH_RELEASE then
+    elseif control == change_previous_screen_button_id and value == TOUCH_RELEASE then
         -- 이전 스크린 전환 버튼 터치 시 무시
         return
-    elseif control == next_screen_button_id and value == TOUCH_RELEASE then
+    elseif control == change_next_screen_button_id and value == TOUCH_RELEASE then
         -- 다음 스크린 전환 버튼 터치 시 2번 스크린으로 전환
         change_screen(button_2_screen_id)
-    elseif control == set_return_button_id and value == TOUCH_RELEASE then
+    elseif control == return_set_button_button_id and value == TOUCH_RELEASE then
         -- 누름 복귀 버튼 터치 시 누름 복귀
-        set_value(button_1_screen_id, set_button_id, TOUCH_RELEASE)
-    elseif control == reset_return_button_id and value == TOUCH_RELEASE then
+        set_value(button_1_screen_id, set_button_button_id, TOUCH_RELEASE)
+    elseif control == return_reset_button_button_id and value == TOUCH_RELEASE then
         -- 뗌 복귀 버튼 터치 시 뗌 복귀
-        set_value(button_1_screen_id, reset_button_id, TOUCH_PRESS)
-    elseif control == long_press_button_id and value == TOUCH_LONG_PRESS then
+        set_value(button_1_screen_id, reset_button_button_id, TOUCH_PRESS)
+    elseif control == long_press_button_button_id and value == TOUCH_LONG_PRESS then
         -- 1초 길게 누름 버튼 길게 터치 시 길게 누름 유지 횟수 표시
         long_press_count = long_press_count + 1
-        set_text(button_1_screen_id, long_press_count_text_id, "길게 누름 유지 횟수: " .. long_press_count)
+        set_text(button_1_screen_id, long_press_button_count_text_id, "길게 누름 유지 횟수: " .. long_press_count)
     end
 end
 

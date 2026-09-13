@@ -10,10 +10,10 @@ local screen_screen_1 = {}
 
 -- 컨트롤 ID 정의
 local exit_button_id = 1
-local previous_screen_button_id = 2
-local next_screen_button_id = 3
-local current_screen_text_id = 4
-local get_current_screen_button_id = 5
+local change_previous_screen_button_id = 2
+local change_next_screen_button_id = 3
+local current_screen_id_text_id = 4
+local get_current_screen_id_button_id = 5
 local refresh_screen_button_id = 6
 local change_child_screen_button_id = 7
 
@@ -26,22 +26,22 @@ function screen_screen_1.on_control_notify(screen, control, value)
     if control == exit_button_id then
         -- 나가기 버튼 터치 시 나가기
         change_screen(main_1_screen_id)
-    elseif control == previous_screen_button_id then
+    elseif control == change_previous_screen_button_id then
         -- 이전 스크린 전환 버튼 터치 시 무시
         return
-    elseif control == next_screen_button_id then
+    elseif control == change_next_screen_button_id then
         -- 다음 스크린 전환 버튼 터치 시 2번 스크린으로 전환
         change_screen(screen_2_screen_id)
-    elseif control == get_current_screen_button_id then
+    elseif control == get_current_screen_id_button_id then
         -- 현재 스크린 확인 버튼 터치 시 현재 스크린 번호 표시
         local current_screen_id = get_current_screen() -- 현재 스크린 번호 가져오기
-        set_text(screen_1_screen_id, current_screen_text_id, "현재 스크린 번호: " .. current_screen_id)
+        set_text(screen_1_screen_id, current_screen_id_text_id, "현재 스크린 번호: " .. current_screen_id)
     elseif control == refresh_screen_button_id then
         -- 스크린 갱신 버튼 터치 시 스크린 갱신
         refresh_screen()
     elseif control == change_child_screen_button_id then
         -- 보조 스크린 전환 버튼 터치 시 보조 스크린 전환
-        change_child_screen(screen_child_screen_id)
+        change_child_screen(screen_child_1_screen_id)
     end
 end
 

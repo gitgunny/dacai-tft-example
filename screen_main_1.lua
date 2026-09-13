@@ -13,8 +13,12 @@ local screen_button_id = 1
 local control_button_id = 2
 local button_button_id = 3
 local text_button_id = 4
-local previous_screen_button_id = 21
-local next_screen_button_id = 22
+local progress_bar_button_id = 5
+local meter_button_id = 6
+local slider_button_id = 7
+local meter_slider_button_id = 8
+local change_previous_screen_button_id = 21
+local change_next_screen_button_id = 22
 
 --- 컨트롤 이벤트 콜백 함수
 --- dacai_tft_example.lua 파일에서 on_control_notify 콜백 함수 등록 필수
@@ -34,10 +38,22 @@ function screen_main_1.on_control_notify(screen, control, value)
     elseif control == text_button_id then
         -- 텍스트 버튼 터치 시 텍스트 예제 스크린으로 전환
         change_screen(text_1_screen_id)
-    elseif control == previous_screen_button_id then
+    elseif control == progress_bar_button_id then
+        -- 진행 막대 버튼 터치 시 진행 막대 예제 스크린 전환
+        change_screen(progress_bar_1_screen_id)
+    elseif control == meter_button_id then
+        -- 계기 버튼 터치 시 계기 예제 스크린 전환
+        change_screen(meter_1_screen_id)
+    elseif control == slider_button_id then
+        -- 슬라이더 버튼 터치 시 슬라이더 예제 스크린 전환
+        change_screen(slider_1_screen_id)
+    elseif control == meter_slider_button_id then
+        -- 계기 슬라이더 응용 버튼 터치 시 계기 슬라이더 응용 스크린 전환
+        change_screen(meter_slider_1_screen_id)
+    elseif control == change_previous_screen_button_id then
         -- 이전 스크린 버튼 터치 시 무시
         return
-    elseif control == next_screen_button_id then
+    elseif control == change_next_screen_button_id then
         -- 다음 스크린 버튼 터치 시 무시
         return
     end

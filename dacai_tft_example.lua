@@ -20,7 +20,7 @@ screen_2_screen_id = 2
 screen_3_screen_id = 3
 screen_4_screen_id = 4
 screen_5_screen_id = 5
-screen_child_screen_id = 6
+screen_child_1_screen_id = 6
 screen_splite_1_screen_id = 7
 screen_splite_2_screen_id = 8
 screen_splite_3_screen_id = 9
@@ -32,6 +32,13 @@ button_3_screen_id = 14
 text_1_screen_id = 15
 text_2_screen_id = 16
 text_3_screen_id = 17
+progress_bar_1_screen_id = 18
+progress_bar_2_screen_id = 19
+meter_1_screen_id = 20
+meter_2_screen_id = 21
+slider_1_screen_id = 22
+slider_2_screen_id = 23
+meter_slider_1_screen_id = 24
 
 -- 패키지 초기화
 screen_main_1 = require("screen_main_1")
@@ -40,7 +47,7 @@ screen_screen_2 = require("screen_screen_2")
 screen_screen_3 = require("screen_screen_3")
 screen_screen_4 = require("screen_screen_4")
 screen_screen_5 = require("screen_screen_5")
-screen_child = require("screen_child")
+screen_child_1 = require("screen_child_1")
 screen_control_1 = require("screen_control_1")
 screen_control_2 = require("screen_control_2")
 screen_button_1 = require("screen_button_1")
@@ -49,6 +56,13 @@ screen_button_3 = require("screen_button_3")
 screen_text_1 = require("screen_text_1")
 screen_text_2 = require("screen_text_2")
 screen_text_3 = require("screen_text_3")
+screen_progress_bar_1 = require("screen_progress_bar_1")
+screen_progress_bar_2 = require("screen_progress_bar_2")
+screen_meter_1 = require("screen_meter_1")
+screen_meter_2 = require("screen_meter_2")
+screen_slider_1 = require("screen_slider_1")
+screen_slider_2 = require("screen_slider_2")
+screen_meter_slider_1 = require("screen_meter_slider_1")
 
 --- 초기화 함수
 --- --- main.lua 파일에서 on_init 콜백 함수 등록 필수
@@ -74,11 +88,11 @@ function dacai_tft_example.on_control_notify(screen, control, value)
         screen_screen_4.on_control_notify(screen, control, value)
     elseif screen == screen_5_screen_id and value == TOUCH_RELEASE then
         screen_screen_5.on_control_notify(screen, control, value)
-    elseif screen == screen_child_screen_id and value == TOUCH_RELEASE then
-        screen_child.on_control_notify(screen, control, value)
-    elseif screen == control_1_screen_id and value == TOUCH_RELEASE then
+    elseif screen == screen_child_1_screen_id and value == TOUCH_RELEASE then
+        screen_child_1.on_control_notify(screen, control, value)
+    elseif screen == control_1_screen_id and (value == TOUCH_RELEASE or (value >= 0 and value <= 180)) then
         screen_control_1.on_control_notify(screen, control, value)
-    elseif screen == control_2_screen_id and value == TOUCH_RELEASE then
+    elseif screen == control_2_screen_id and (value == TOUCH_RELEASE or (value >= 0 and value <= 180)) then
         screen_control_2.on_control_notify(screen, control, value)
     elseif screen == button_1_screen_id and (value == TOUCH_RELEASE or value == TOUCH_PRESS or value == TOUCH_LONG_PRESS) then
         screen_button_1.on_control_notify(screen, control, value)
@@ -92,6 +106,20 @@ function dacai_tft_example.on_control_notify(screen, control, value)
         screen_text_2.on_control_notify(screen, control, value)
     elseif screen == text_3_screen_id and value == TOUCH_RELEASE then
         screen_text_3.on_control_notify(screen, control, value)
+    elseif screen == progress_bar_1_screen_id and value == TOUCH_RELEASE then
+        screen_progress_bar_1.on_control_notify(screen, control, value)
+    elseif screen == progress_bar_2_screen_id and value == TOUCH_RELEASE then
+        screen_progress_bar_2.on_control_notify(screen, control, value)
+    elseif screen == meter_1_screen_id and value == TOUCH_RELEASE then
+        screen_meter_1.on_control_notify(screen, control, value)
+    elseif screen == meter_2_screen_id and value == TOUCH_RELEASE then
+        screen_meter_2.on_control_notify(screen, control, value)
+    elseif screen == slider_1_screen_id and value == TOUCH_RELEASE then
+        screen_slider_1.on_control_notify(screen, control, value)
+    elseif screen == slider_2_screen_id and value == TOUCH_RELEASE then
+        screen_slider_2.on_control_notify(screen, control, value)
+    elseif screen == meter_slider_1_screen_id and (value == TOUCH_RELEASE or (value >= 0 and value <= 180)) then
+        screen_meter_slider_1.on_control_notify(screen, control, value)
     end
 end
 

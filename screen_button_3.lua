@@ -19,8 +19,8 @@ local STATE_ON = 2
 
 -- 컨트롤 ID 정의
 local exit_button_id = 1
-local previous_screen_button_id = 2
-local next_screen_button_id = 3
+local change_previous_screen_button_id = 2
+local change_next_screen_button_id = 3
 local switch_toggle_button_id = 4
 local switch_toggle_icon_id = 5
 local switch_1_button_id = 7
@@ -51,10 +51,10 @@ function screen_button_3.on_control_notify(screen, control, value)
     if control == exit_button_id and value == TOUCH_RELEASE then
         -- 나가기 버튼 터치 시 나가기
         change_screen(main_1_screen_id)
-    elseif control == previous_screen_button_id and value == TOUCH_RELEASE then
+    elseif control == change_previous_screen_button_id and value == TOUCH_RELEASE then
         -- 이전 스크린 전환 버튼 터치 시 2번 스크린으로 전환
         change_screen(button_2_screen_id)
-    elseif control == next_screen_button_id and value == TOUCH_RELEASE then
+    elseif control == change_next_screen_button_id and value == TOUCH_RELEASE then
         -- 다음 스크린 전환 버튼 터치 시 무시
         return
     elseif control == switch_toggle_button_id and value == TOUCH_RELEASE then

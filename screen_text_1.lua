@@ -10,14 +10,14 @@ local screen_text_1 = {}
 
 -- 컨트롤 ID 정의
 local exit_button_id = 1
-local previous_screen_button_id = 2
-local next_screen_button_id = 3
+local change_previous_screen_button_id = 2
+local change_next_screen_button_id = 3
 local input_text_id = 4
 local unsign_number_input_button_id = 5
 local sign_number_input_button_id = 6
 local float_number_input_button_id = 7
 local text_input_button_id = 8
-local get_intput_id = 9
+local get_input_intput_id = 9
 local get_value_button_id = 10
 local get_text_button_id = 11
 
@@ -30,10 +30,10 @@ function screen_text_1.on_control_notify(screen, control, value)
     if control == exit_button_id then
         -- 나가기 버튼 터치 시 나가기
         change_screen(main_1_screen_id)
-    elseif control == previous_screen_button_id then
+    elseif control == change_previous_screen_button_id then
         -- 이전 스크린 전환 버튼 터치 시 무시
         return
-    elseif control == next_screen_button_id then
+    elseif control == change_next_screen_button_id then
         -- 다음 스크린 전환 버튼 터치 시 2번 스크린으로 전환
         change_screen(text_2_screen_id)
     elseif control == unsign_number_input_button_id then
@@ -51,11 +51,11 @@ function screen_text_1.on_control_notify(screen, control, value)
     elseif control == get_value_button_id then
         -- 숫자 가져오기 버튼 터치 시 가져온 숫자 표시
         local current_input_value = get_value(text_1_screen_id, input_text_id)
-        set_value(text_1_screen_id, get_intput_id, current_input_value)
+        set_value(text_1_screen_id, get_input_intput_id, current_input_value)
     elseif control == get_text_button_id then
         -- 텍스트 가져오기 버튼 터치 시 가져온 텍스트 표시
         local current_input_text = get_text(text_1_screen_id, input_text_id)
-        set_text(text_1_screen_id, get_intput_id, current_input_text)
+        set_text(text_1_screen_id, get_input_intput_id, current_input_text)
     end
 end
 

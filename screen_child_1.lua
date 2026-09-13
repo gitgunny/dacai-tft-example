@@ -6,7 +6,7 @@ Copyright (c) 2026 https://github.com/gitgunny
 
 --]]
 
-local screen_child = {}
+local screen_child_1 = {}
 
 -- 컨트롤 ID 정의
 local confirm_button_id = 1
@@ -16,11 +16,11 @@ local confirm_button_id = 1
 --- @param screen  number 호출 스크린 ID
 --- @param control number 호출 컨트롤 ID
 --- @param value   number 호출 값
-function screen_child.on_control_notify(screen, control, value)
+function screen_child_1.on_control_notify(screen, control, value)
     if control == confirm_button_id then
         -- 확인 버튼 터치 시 1번 스크린으로 전환
         change_screen(screen_1_screen_id)
     end
 end
 
-return screen_child
+return screen_child_1
