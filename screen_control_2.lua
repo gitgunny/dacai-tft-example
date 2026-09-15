@@ -13,20 +13,16 @@ local TOUCH_RELEASE = 0
 local TOUCH_PRESS = 1
 local TOUCH_LONG_PRESS = 2
 
-local STATE_DISABLE = 0
-local STATE_ENABLE = 1
+local VISIBLE_HIDE = 0
+local VISIBLE_SHOW = 1
 
 -- 컨트롤 ID 정의
 local exit_button_id = 1
 local change_previous_screen_button_id = 2
 local change_next_screen_button_id = 3
-local enable_control_button_id = 4
-local disable_control_button_id = 5
-local enable_disable_button_id = 6
-local enable_disable_text_id = 7
-local enable_disable_meter_id = 8
-local enable_disable_progress_bar_id = 9
-local enable_disable_slider_id = 10
+local show_control_button_id = 4
+local hide_control_button_id = 5
+local show_hide_rtc_id = 6
 
 --- 컨트롤 이벤트 콜백 함수
 --- dacai_tft_example.lua 파일에서 on_control_notify 콜백 함수 등록 필수
@@ -41,26 +37,14 @@ function screen_control_2.on_control_notify(screen, control, value)
         -- 이전 스크린 전환 버튼 터치 시 1번 스크린으로 전환
         change_screen(control_1_screen_id)
     elseif control == change_next_screen_button_id and value == TOUCH_RELEASE then
-        -- 다음 스크린 전환 버튼 터치 시 무시
-        return
-    elseif control == enable_control_button_id and value == TOUCH_RELEASE then
-        -- 컨트롤 활성화 버튼 터치 시 모든 컨트롤 활성화
-        set_enable(control_2_screen_id, enable_disable_button_id, STATE_ENABLE)
-        set_enable(control_2_screen_id, enable_disable_text_id, STATE_ENABLE)
-        set_enable(control_2_screen_id, enable_disable_meter_id, STATE_ENABLE)
-        set_enable(control_2_screen_id, enable_disable_progress_bar_id, STATE_ENABLE)
-        set_enable(control_2_screen_id, enable_disable_slider_id, STATE_ENABLE)
-    elseif control == disable_control_button_id and value == TOUCH_RELEASE then
-        -- 컨트롤 비활성화 버튼 터치 시 모든 컨트롤 비활성화
-        set_enable(control_2_screen_id, enable_disable_button_id, STATE_DISABLE)
-        set_enable(control_2_screen_id, enable_disable_text_id, STATE_DISABLE)
-        set_enable(control_2_screen_id, enable_disable_meter_id, STATE_DISABLE)
-        set_enable(control_2_screen_id, enable_disable_progress_bar_id, STATE_DISABLE)
-        set_enable(control_2_screen_id, enable_disable_slider_id, STATE_DISABLE)
-    elseif control == enable_disable_slider_id and (value >= 0 and value <= 180) then
-        -- 계기 슬라이더 터치 시 계기 바늘 갱신
-        local meter_value = get_value(control_2_screen_id, enable_disable_slider_id)
-        set_value(control_2_screen_id, enable_disable_meter_id, meter_value)
+        -- 다음 스크린 전환 버튼 터치 시 3번 스크린으로 전환
+        change_screen(control_3_screen_id)
+    elseif control == show_control_button_id and value == TOUCH_RELEASE then
+        -- 컨트롤 보이기 버튼 터치 시 모든 컨트롤 보이기
+        set_visiable(control_2_screen_id, show_hide_rtc_id, VISIBLE_SHOW)
+    elseif control == hide_control_button_id and value == TOUCH_RELEASE then
+        -- 컨트롤 숨기기 버튼 터치 시 모든 컨트롤 숨기기
+        set_visiable(control_2_screen_id, show_hide_rtc_id, VISIBLE_HIDE)
     end
 end
 

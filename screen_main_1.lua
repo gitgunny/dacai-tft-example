@@ -17,6 +17,7 @@ local progress_bar_button_id = 5
 local meter_button_id = 6
 local slider_button_id = 7
 local meter_slider_button_id = 8
+local rtc_timer_button_id = 9
 local change_previous_screen_button_id = 21
 local change_next_screen_button_id = 22
 
@@ -50,6 +51,9 @@ function screen_main_1.on_control_notify(screen, control, value)
     elseif control == meter_slider_button_id then
         -- 계기 슬라이더 응용 버튼 터치 시 계기 슬라이더 응용 스크린 전환
         change_screen(meter_slider_1_screen_id)
+    elseif control == rtc_timer_button_id then
+        -- 타이머 버튼 터치 시 타이머 스크린 전환
+        change_screen(rtc_timer_1_screen_id)
     elseif control == change_previous_screen_button_id then
         -- 이전 스크린 버튼 터치 시 무시
         return

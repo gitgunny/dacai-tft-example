@@ -31,3 +31,9 @@ end
 function on_screen_change(screen)
     dacai_tft_example.on_screen_change(screen)
 end
+
+--- 타이머가 타임아웃에 도달할 때 이 콜백 함수를 호출합니다.
+--- @param timer_id number 타이머 번호(0 ~ 31)
+function on_timer(timer_id)
+    dacai_tft_example.on_timer(timer_id)
+end
