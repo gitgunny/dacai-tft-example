@@ -23,6 +23,8 @@ local change_next_screen_button_id = 3
 local enable_control_button_id = 4
 local disable_control_button_id = 5
 local enable_disable_rtc_id = 6
+local enable_disable_animation_id = 7
+local enable_disable_icon_id = 8
 
 --- 컨트롤 이벤트 콜백 함수
 --- dacai_tft_example.lua 파일에서 on_control_notify 콜백 함수 등록 필수
@@ -42,9 +44,13 @@ function screen_control_4.on_control_notify(screen, control, value)
     elseif control == enable_control_button_id and value == TOUCH_RELEASE then
         -- 컨트롤 활성화 버튼 터치 시 모든 컨트롤 활성화
         set_enable(control_4_screen_id, enable_disable_rtc_id, STATE_ENABLE)
+        set_enable(control_4_screen_id, enable_disable_animation_id, STATE_ENABLE)
+        set_enable(control_4_screen_id, enable_disable_icon_id, STATE_ENABLE)
     elseif control == disable_control_button_id and value == TOUCH_RELEASE then
         -- 컨트롤 비활성화 버튼 터치 시 모든 컨트롤 비활성화
         set_enable(control_4_screen_id, enable_disable_rtc_id, STATE_DISABLE)
+        set_enable(control_4_screen_id, enable_disable_animation_id, STATE_DISABLE)
+        set_enable(control_4_screen_id, enable_disable_icon_id, STATE_DISABLE)
     end
 end
 

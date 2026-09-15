@@ -23,6 +23,8 @@ local change_next_screen_button_id = 3
 local show_control_button_id = 4
 local hide_control_button_id = 5
 local show_hide_rtc_id = 6
+local show_hide_animation_id = 7
+local show_hide_icon_id = 8
 
 --- 컨트롤 이벤트 콜백 함수
 --- dacai_tft_example.lua 파일에서 on_control_notify 콜백 함수 등록 필수
@@ -42,9 +44,13 @@ function screen_control_2.on_control_notify(screen, control, value)
     elseif control == show_control_button_id and value == TOUCH_RELEASE then
         -- 컨트롤 보이기 버튼 터치 시 모든 컨트롤 보이기
         set_visiable(control_2_screen_id, show_hide_rtc_id, VISIBLE_SHOW)
+        set_visiable(control_2_screen_id, show_hide_animation_id, VISIBLE_SHOW)
+        set_visiable(control_2_screen_id, show_hide_icon_id, VISIBLE_SHOW)
     elseif control == hide_control_button_id and value == TOUCH_RELEASE then
         -- 컨트롤 숨기기 버튼 터치 시 모든 컨트롤 숨기기
         set_visiable(control_2_screen_id, show_hide_rtc_id, VISIBLE_HIDE)
+        set_visiable(control_2_screen_id, show_hide_animation_id, VISIBLE_HIDE)
+        set_visiable(control_2_screen_id, show_hide_icon_id, VISIBLE_HIDE)
     end
 end
 

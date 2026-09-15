@@ -43,6 +43,9 @@ slider_2_screen_id = 25
 meter_slider_1_screen_id = 26
 rtc_timer_1_screen_id = 27
 rtc_timer_2_screen_id = 28
+animation_1_screen_id = 29
+animation_2_screen_id = 30
+icon_1_screen_id = 31
 
 -- 패키지 초기화
 screen_main_1 = require("screen_main_1")
@@ -71,6 +74,9 @@ screen_slider_2 = require("screen_slider_2")
 screen_meter_slider_1 = require("screen_meter_slider_1")
 screen_rtc_timer_1 = require("screen_rtc_timer_1")
 screen_rtc_timer_2 = require("screen_rtc_timer_2")
+screen_animation_1 = require("screen_animation_1")
+screen_animation_2 = require("screen_animation_2")
+screen_icon_1 = require("screen_icon_1")
 
 --- 초기화 함수
 --- --- main.lua 파일에서 on_init 콜백 함수 등록 필수
@@ -137,6 +143,12 @@ function dacai_tft_example.on_control_notify(screen, control, value)
         screen_rtc_timer_1.on_control_notify(screen, control, value)
     elseif screen == rtc_timer_2_screen_id and value == TOUCH_RELEASE then
         screen_rtc_timer_2.on_control_notify(screen, control, value)
+    elseif screen == animation_1_screen_id and value == TOUCH_RELEASE then
+        screen_animation_1.on_control_notify(screen, control, value)
+    elseif screen == animation_2_screen_id and value == TOUCH_RELEASE then
+        screen_animation_2.on_control_notify(screen, control, value)
+    elseif screen == icon_1_screen_id and value == TOUCH_RELEASE then
+        screen_icon_1.on_control_notify(screen, control, value)
     end
 end
 
