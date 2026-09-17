@@ -20,6 +20,8 @@ local meter_slider_button_id = 8
 local rtc_timer_button_id = 9
 local animation_button_id = 10
 local icon_button_id = 11
+local graph_button_id = 12
+local menu_button_id = 13
 local change_previous_screen_button_id = 21
 local change_next_screen_button_id = 22
 
@@ -62,6 +64,12 @@ function screen_main_1.on_control_notify(screen, control, value)
     elseif control == icon_button_id then
         -- 아이콘 버튼 터치 시 아이콘 스크린 전환
         change_screen(icon_1_screen_id)
+    elseif control == graph_button_id then
+        -- 그래프(미구현) 버튼 터치 시 그래프 스크린 전환
+        change_screen(graph_1_screen_id)
+    elseif control == menu_button_id then
+        -- 메뉴 버튼 터치 시 메뉴 스크린 전환
+        change_screen(menu_1_screen_id)
     elseif control == change_previous_screen_button_id then
         -- 이전 스크린 버튼 터치 시 무시
         return

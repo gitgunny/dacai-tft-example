@@ -46,6 +46,16 @@ rtc_timer_2_screen_id = 28
 animation_1_screen_id = 29
 animation_2_screen_id = 30
 icon_1_screen_id = 31
+graph_1_screen_id = 32
+menu_1_screen_id = 33
+menu_2_screen_id = 34
+menu_3_screen_id = 35
+menu_child_1_screen_id = 36
+menu_child_2_screen_id = 37
+menu_child_3_screen_id = 38
+menu_splite_1_screen_id = 39
+menu_splite_2_screen_id = 40
+menu_splite_3_screen_id = 41
 
 -- 패키지 초기화
 screen_main_1 = require("screen_main_1")
@@ -77,12 +87,24 @@ screen_rtc_timer_2 = require("screen_rtc_timer_2")
 screen_animation_1 = require("screen_animation_1")
 screen_animation_2 = require("screen_animation_2")
 screen_icon_1 = require("screen_icon_1")
+screen_graph_1 = require("screen_graph_1")
+screen_menu_1 = require("screen_menu_1")
+screen_menu_2 = require("screen_menu_2")
+screen_menu_3 = require("screen_menu_3")
+screen_menu_child_1 = require("screen_menu_child_1")
+screen_menu_child_2 = require("screen_menu_child_2")
+screen_menu_child_3 = require("screen_menu_child_3")
+screen_menu_splite_1 = require("screen_menu_splite_1")
+screen_menu_splite_2 = require("screen_menu_splite_2")
+screen_menu_splite_3 = require("screen_menu_splite_3")
 
 --- 초기화 함수
 --- --- main.lua 파일에서 on_init 콜백 함수 등록 필수
 function dacai_tft_example.on_init()
     screen_button_3.on_init()
     screen_rtc_timer_2.on_init()
+    screen_menu_2.on_init()
+    screen_menu_3.on_init()
 end
 
 --- 컨트롤 이벤트 콜백 함수
@@ -149,6 +171,26 @@ function dacai_tft_example.on_control_notify(screen, control, value)
         screen_animation_2.on_control_notify(screen, control, value)
     elseif screen == icon_1_screen_id and value == TOUCH_RELEASE then
         screen_icon_1.on_control_notify(screen, control, value)
+    elseif screen == graph_1_screen_id and value == TOUCH_RELEASE then
+        screen_graph_1.on_control_notify(screen, control, value)
+    elseif screen == menu_1_screen_id and value == TOUCH_RELEASE then
+        screen_menu_1.on_control_notify(screen, control, value)
+    elseif screen == menu_2_screen_id and value == TOUCH_RELEASE then
+        screen_menu_2.on_control_notify(screen, control, value)
+    elseif screen == menu_3_screen_id and value == TOUCH_RELEASE then
+        screen_menu_3.on_control_notify(screen, control, value)
+    elseif screen == menu_child_1_screen_id and value == TOUCH_RELEASE then
+        screen_menu_child_1.on_control_notify(screen, control, value)
+    elseif screen == menu_child_2_screen_id and value == TOUCH_RELEASE then
+        screen_menu_child_2.on_control_notify(screen, control, value)
+    elseif screen == menu_child_3_screen_id and value == TOUCH_RELEASE then
+        screen_menu_child_3.on_control_notify(screen, control, value)
+    elseif screen == menu_splite_1_screen_id and value == TOUCH_RELEASE then
+        screen_menu_splite_1.on_control_notify(screen, control, value)
+    elseif screen == menu_splite_2_screen_id and value == TOUCH_RELEASE then
+        screen_menu_splite_2.on_control_notify(screen, control, value)
+    elseif screen == menu_splite_3_screen_id and value == TOUCH_RELEASE then
+        screen_menu_splite_3.on_control_notify(screen, control, value)
     end
 end
 
